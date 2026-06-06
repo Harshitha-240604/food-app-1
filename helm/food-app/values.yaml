@@ -1,0 +1,31 @@
+replicaCount: 2
+
+image:
+  repository: harshithareddy24/food-app
+  tag: v1
+  pullPolicy: IfNotPresent
+
+service:
+  type: LoadBalancer
+  port: 80
+  targetPort: 80
+  nodePort: 30007
+
+ingress:
+  enabled: false
+  annotations: {}
+  hosts:
+    - host: chart-example.local
+      paths:
+        - path: /
+          pathType: Prefix
+  tls: []
+
+volume:
+  name: app-volume
+  mountPath: /app
+
+podAnnotations: {}
+podSecurityContext: {}
+containerSecurityContext: {}
+resources: {}
